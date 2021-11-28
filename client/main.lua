@@ -314,6 +314,10 @@ RegisterNetEvent('qb-ifruitstore:client:robberyCall', function(streetLabel, coor
     end
 end)
 
+RegisterNetEvent('qb-ifruitstore:client:GrabItem', function(currentSpot) -- fix exploit
+  GrabItem(currentSpot)
+end)
+
 -- Thread
 
 CreateThread(function()
@@ -390,7 +394,8 @@ CreateThread(function()
                                         QBCore.Functions.TriggerCallback('QBCore:HasItem', function(hasItem)
                                             if hasItem then
                                                 currentSpot = spot
-                                                GrabItem(currentSpot)
+						TriggerServerEvent('qb-ifruitstore:server:grabItem', spot) -- fix for exploit
+                                            	TriggerServerEvent('qb-ifruitstore:server:setSpotState', "isBusy", true, spot)
                                             else
                                                 QBCore.Functions.Notify("You are missing an advanced lockpick", "error")
                                             end
