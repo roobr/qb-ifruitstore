@@ -77,3 +77,11 @@ end)
 RegisterNetEvent('qb-ifruitstore:server:callCops', function(streetLabel, coords)
     TriggerClientEvent("qb-ifruitstore:client:robberyCall", -1, streetLabel, coords)
 end)
+
+RegisterNetEvent('qb-ifruitstore:server:grabItem', function(spot) -- fix for exploit
+    if not Config.Locations["takeables"][spot].isBusy then
+      TriggerClientEvent('qb-ifruitstore:client:GrabItem', source, spot)
+    else
+      TriggerClientEvent('QBCore:Notify', source, "Don't try to exploit..", 'error')
+    end
+end)
