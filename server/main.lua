@@ -7,7 +7,7 @@ local certificateAmount = 43
 
 RegisterNetEvent('qb-ifruitstore:server:LoadLocationList', function()
     local src = source
-    TriggerClientEvent("qb-ifruitstore:server:LoadLocationList", src, Config.Locations)
+    TriggerClientEvent("qb-ifruitstore:client:LoadList", src, Config.Locations)
 end)
 
 RegisterNetEvent('qb-ifruitstore:server:setSpotState', function(stateType, state, spot)
